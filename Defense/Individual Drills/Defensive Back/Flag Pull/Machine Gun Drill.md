@@ -20,5 +20,7 @@
 4. Der nächste Spieler startet, wenn der DB beim vorherigen die Flagge gezogen hat.
 5. Alternativ kann der Coach die Frequenz der Spieler vorgeben und variieren.
 
+## Grafik
 
+![](/assets/MachineGunDrill.png)
 
