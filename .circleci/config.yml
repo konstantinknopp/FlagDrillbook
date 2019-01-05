@@ -37,7 +37,6 @@ jobs:
             git config --global user.name $(git log -1 --pretty=format:'%an')
             git pull
             git rebase origin/gh-pages
-            CURRENTHASH=$(git rev-parse HEAD)
 
       - save_cache:
           paths:
@@ -49,8 +48,9 @@ jobs:
           command: |
             yarn run gitbook build
             cp -R _book/* .
+            LASTHASH=$(git rev-parse HEAD)
             git add .
-            git commit -m "ci build of commit $CURRENTHASH"
+            git commit -m "ci build of commit $LASTHASH"
             git checkout gh-pages
             git merge --ff-only master
             git push origin gh-pages
