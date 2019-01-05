@@ -20,7 +20,7 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: apt-get install -y git calibre
+          command: sudo apt-get install -y git calibre
           
       - run:
           name: Install and Build gitbook
