@@ -25,8 +25,8 @@ jobs:
       - run:
           name: Install and Build gitbook
           command: |
-            yarn add gitbook-cli
-            yarn add gitbook-plugin-summary
+            npm install gitbook-cli --save
+            npm install gitbook-plugin-summary --save
             gitbook fetch 3.2.3
             gitbook install
             gitbook build
