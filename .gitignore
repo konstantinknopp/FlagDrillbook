@@ -20,3 +20,7 @@ _book
 *.pdf
 
 # End of https://www.gitignore.io/api/gitbook
+
+# ignore gitbook folder, because it is built in _book
+# and is copied by CircleCI to the root folder before commiting to gh-pages
+gitbook
