@@ -22,14 +22,22 @@ jobs:
       - run:
           name: Install dependencies
           command: sudo apt-get install -y git calibre
-          
+
       - run:
-          name: Install and Build gitbook
+          name: Install gitbook
           command: |
             yarn install
-            yarn run gitbook fetch 3.2.3
+            yarn run gitbook fetch
             yarn run gitbook install
-            yarn run gitbook build
+          
+      - run:
+          name: Synchronize git branches
+          command: |
+            git config --global user.email $(git log -1 --pretty=format:'%ae')
+            git config --global user.name $(git log -1 --pretty=format:'%an')
+            git pull
+            git rebase origin/gh-pages
+            CURRENTHASH=$(git rev-parse HEAD)
 
       - save_cache:
           paths:
@@ -37,12 +45,12 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
           
       - run:
-          name: Deploy
+          name: Build and Deploy Drillbook
           command: |
-            git config --global user.email $(git log -1 --pretty=format:'%ae')
-            git config --global user.name $(git log -1 --pretty=format:'%an')
+            yarn run gitbook build
             cp -R _book/* .
             git add .
-            git commit -m "ci build of commit $(git rev-parse HEAD)"
-            git checkout -b gh-pages
-            git push --set-upstream origin gh-pages
+            git commit -m "ci build of commit $CURRENTHASH"
+            git checkout gh-pages
+            git merge --ff-only master
+            git push origin gh-pages
