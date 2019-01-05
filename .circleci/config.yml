@@ -28,7 +28,7 @@ jobs:
             yarn install
             yarn run gitbook fetch 3.2.3
             yarn run gitbook install
-            yarn rungitbook build
+            yarn run gitbook build
 
       - save_cache:
           paths:
