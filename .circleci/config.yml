@@ -22,7 +22,7 @@ jobs:
           name: Install dependencies
           command: apt-get install -y git calibre
           
-      -run:
+      - run:
           name: Install and Build gitbook
           command: |
             yarn install --global gitbook-cli
