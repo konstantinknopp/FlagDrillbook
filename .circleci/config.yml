@@ -25,9 +25,9 @@ jobs:
       - run:
           name: Install and Build gitbook
           command: |
-            yarn install --global gitbook-cli
+            yarn add gitbook-cli
+            yarn add gitbook-plugin-summary
             gitbook fetch 3.2.3
-            yarn install --global gitbook-plugin-summary
             gitbook install
             gitbook build
 
