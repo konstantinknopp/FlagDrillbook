@@ -44,4 +44,5 @@ jobs:
             cp -R _book/* .
             git add .
             git commit -m "ci build of commit $(git rev-parse HEAD)"
-            git push origin gh-pages
+            git checkout -b gh-pages
+            git push
