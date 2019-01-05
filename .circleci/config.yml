@@ -38,4 +38,8 @@ jobs:
       - run:
           name: Deploy
           command: |
-            echo "not yet implemented"
+            git config --global user.email $(git log -1 --pretty=format:'%ae')
+            git config --global user.name $(git log -1 --pretty=format:'%an')
+            git add .
+            git commit -m "ci build of commit $(git rev-parse HEAD)"
+            git push
