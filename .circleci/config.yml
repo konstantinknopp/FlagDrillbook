@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Install and Build gitbook
           command: |
-            npm install
+            yarn install
             gitbook fetch 3.2.3
             gitbook install
             gitbook build
