@@ -37,7 +37,9 @@ jobs:
             git config --global user.name $(git log -1 --pretty=format:'%an')
             git pull
             python generateSummary.py
+            git stash
             git rebase origin/gh-pages
+            git checkout stash -- SUMMARY.md
             rm -rf gitbook
 
       - save_cache:
