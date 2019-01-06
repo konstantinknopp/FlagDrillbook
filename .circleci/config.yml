@@ -36,6 +36,7 @@ jobs:
             git config --global user.email $(git log -1 --pretty=format:'%ae')
             git config --global user.name $(git log -1 --pretty=format:'%an')
             git pull
+            python generateSummary.py
             git rebase origin/gh-pages
             rm -rf gitbook
 
@@ -47,7 +48,6 @@ jobs:
       - run:
           name: Build and Deploy Drillbook
           command: |
-            python generateSummary.py
             yarn run gitbook build
             cp -R _book/* .
             LASTHASH=$(git rev-parse HEAD)
