@@ -1,5 +1,8 @@
 {
-  "plugins": [
-    "summary"
-  ]
+  "plugins": ["toggle-summary","partial-summary"],
+  "pluginsConfig": {
+    "partial-summary": {
+      "depth":2
+    }
+  }
 }

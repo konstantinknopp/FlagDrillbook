@@ -47,6 +47,7 @@ jobs:
       - run:
           name: Build and Deploy Drillbook
           command: |
+            python generateSummary.py
             yarn run gitbook build
             cp -R _book/* .
             LASTHASH=$(git rev-parse HEAD)
